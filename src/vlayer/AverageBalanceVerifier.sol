@@ -17,10 +17,11 @@ contract AverageBalanceVerifier is Verifier {
         reward = new HodlerBadgeNFT();
     }
 
-    function claim(Proof calldata, address claimer, uint256 average)
-        public
-        onlyVerified(prover, AverageBalance.averageBalanceOf.selector)
-    {
+    function claim(
+        Proof calldata,
+        address claimer,
+        uint256 average
+    ) public onlyVerified(prover, AverageBalance.averageBalanceOf.selector) {
         require(!claimed[claimer], "Already claimed");
 
         if (average >= 10_000_000) {
